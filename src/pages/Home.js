@@ -1,26 +1,34 @@
-import { useState, useEffect } from "react";
-import Pagination from "../components/Pagination";
-import PokemonList from "../components/PokemonList";
-import axios from "axios";
+import { useState, useEffect } from 'react';
+import Pagination from '../components/Pagination';
+import PokemonList from '../components/PokemonList';
+import axios from 'axios';
+import Loader from '../components/Loader';
 
 const HomePage = () => {
   const [pokemons, setPokemons] = useState([]);
-  const [currentPageUrl, setCurrentPageUrl] = useState("https://pokeapi.co/api/v2/pokemon");
+  const [currentPageUrl, setCurrentPageUrl] = useState('https://pokeapi.co/api/v2/pokemon');
   const [nextPageUrl, setNextPageUrl] = useState();
   const [prevPageUrl, setPrevPageUrl] = useState();
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    setLoading(true);
     const controller = new AbortController();
+    const getPokemonList = async () => {
+      try {
+        setLoading(true);
+        const response = await axios.get(currentPageUrl, { signal: AbortController.signal });
+        console.log(response);
 
-    axios.get(currentPageUrl, { signal: AbortController.signal }).then((res) => {
-      setLoading(false);
-      setNextPageUrl(res.data.next);
-      setPrevPageUrl(res.data.previous);
-      setPokemons(res.data.results.map((p) => p.name));
-    });
-
+        setLoading(false);
+        setNextPageUrl(response.data.next);
+        setPrevPageUrl(response.data.previous);
+        setPokemons(response.data.results);
+      } catch (err) {
+        setLoading(false);
+        console.log(err);
+      }
+    };
+    getPokemonList();
     return () => {
       controller.abort();
     };
@@ -34,10 +42,10 @@ const HomePage = () => {
     setCurrentPageUrl(prevPageUrl);
   };
 
-  if (loading) return "Loading...";
+  if (loading) return <Loader />;
   return (
     <>
-      <PokemonList pokemon={pokemons} />
+      <PokemonList pokemons={pokemons} />
       <Pagination gotoNextPage={nextPageUrl ? gotoNextPage : null} gotoPrevPage={prevPageUrl ? gotoPrevPage : null} />
     </>
   );

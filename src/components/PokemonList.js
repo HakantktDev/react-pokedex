@@ -1,10 +1,12 @@
-import React from "react";
+import { Link } from 'react-router-dom';
 
-const PokemonList = ({ pokemon }) => {
+const PokemonList = ({ pokemons }) => {
   return (
     <div>
-      {pokemon.map((p) => (
-        <div key={p}>{p}</div>
+      {pokemons.map((p) => (
+        <div key={p.name}>
+          <Link to={`pokemon-details/${p.name}`}>{p.name}</Link>
+        </div>
       ))}
     </div>
   );
