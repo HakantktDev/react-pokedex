@@ -54,7 +54,7 @@ const PokemonDetailPage = () => {
     setIsFavorite(false);
   };
   const addFavoritePokemonHandler = () => {
-    if (!isFavorite) {
+    if (!isFavorite && isCatched) {
       dispatch({ type: 'add-favorite', favoritePokemon: data });
     }
   };
@@ -66,32 +66,83 @@ const PokemonDetailPage = () => {
   return (
     <>
       <div className="pokemon-container">
-        <Link to=".." style={{ textAlign: 'left', width: '100%', textDecoration: 'none', color: '#000000' }}>
-          {t('Back to Pokedex')}
-        </Link>
-        <h2 style={{ width: '100%', textAlign: 'center', marginTop: '20px' }}>{t('Pokemon Details')}</h2>
+        <div style={{ width: '100%' }}>
+          <Link to=".." className="pokemon-button">
+            {t('Back to Pokedex')}
+          </Link>
+        </div>
+        {/* <h2 style={{ width: '100%', textAlign: 'center', marginTop: '20px' }}>{t('Pokemon Details')}</h2> */}
         {/* <img src={pokeball} alt="pokeball" width={50} />
         <img src={starOutlined} alt="star" width={50} />
         <img src={starFilled} alt="star" width={50} /> */}
-        <div style={{ width: '40%', textAlign: 'center', background: '#e5e5e5', borderRadius: '3px' }}>
-          <h3 className="capital-letters" style={{}}>
-            {data.name}{' '}
-          </h3>
-          <img src={data.sprites.other.dream_world.front_default} alt={data.name} width={250} />
+        <div
+          style={{ width: '40%', textAlign: 'center', background: '#e5e5e5', borderRadius: '3px', marginTop: '20px' }}
+        >
+          <div style={{ display: 'flex', alignItems: 'center' }}>
+            <div style={{ width: '15%' }}>
+              {!isFavorite && (
+                <img
+                  src={starOutlined}
+                  alt="star"
+                  width={30}
+                  onClick={addFavoritePokemonHandler}
+                  style={{ cursor: isCatched ? 'pointer' : 'default' }}
+                />
+              )}
+              {isFavorite && (
+                <img
+                  src={starFilled}
+                  alt="star"
+                  width={30}
+                  onClick={removeFavoritePokemonHandler}
+                  style={{ cursor: isCatched ? 'pointer' : 'default' }}
+                />
+              )}
+            </div>
+            <div style={{ width: '70%' }}>
+              <h3 className="capital-letters">{data.name}</h3>
+            </div>
+            <div style={{ width: '15%' }}>
+              {isCatched && <img src={pokeball} alt="pokeball" width={30} height={30} />}
+            </div>
+          </div>
+          <img
+            src={data.sprites.other.dream_world.front_default}
+            alt={data.name}
+            style={{ width: '100%', height: 'auto', maxWidth: '200px' }}
+          />
         </div>
-        <div style={{ width: '60%', padding: '0 30px' }} className="pokemon-stats-container">
+        <div style={{ width: '55%', padding: '0 30px', marginTop: '20px' }} className="pokemon-stats-container">
           {data.stats.map((stats) => (
             <div className="pokemon-stats" key={stats.stat.name}>
-              {stats.stat.name}: {stats.base_stat}{' '}
+              <p style={{ textTransform: 'uppercase', fontWeight: 'bold', display: 'grid' }}>
+                {stats.stat.name} <span style={{ fontWeight: 'normal', marginTop: '5px' }}>{stats.base_stat}</span>
+              </p>
             </div>
           ))}
         </div>
-        {!isCatched && <button onClick={catchedPokemonHandler}>{t('Catch')}</button>}
-        {isCatched && <button onClick={releasePokemonHandler}>{t('Release Pokemon')}</button>}
-        {isCatched && !isFavorite && <button onClick={addFavoritePokemonHandler}>{t('Add to favorites')}</button>}
-        {isCatched && isFavorite && (
-          <button onClick={removeFavoritePokemonHandler}>{t('Remove from favorites')}</button>
-        )}
+        <div style={{ width: '100%', textAlign: 'center', marginTop: '30px' }}>
+          {!isCatched && (
+            <button className="pokemon-button" onClick={catchedPokemonHandler}>
+              {t('Catch')}
+            </button>
+          )}
+          {isCatched && (
+            <button className="pokemon-button" onClick={releasePokemonHandler}>
+              {t('Release Pokemon')}
+            </button>
+          )}
+          {isCatched && !isFavorite && (
+            <button className="pokemon-button" onClick={addFavoritePokemonHandler}>
+              {t('Add to favorites')}
+            </button>
+          )}
+          {isCatched && isFavorite && (
+            <button className="pokemon-button" onClick={removeFavoritePokemonHandler}>
+              {t('Remove from favorites')}
+            </button>
+          )}
+        </div>
       </div>
     </>
   );

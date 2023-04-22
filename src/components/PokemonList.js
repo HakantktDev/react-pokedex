@@ -5,7 +5,7 @@ const PokemonList = ({ pokemons }) => {
     return word.charAt(0).toUpperCase() + word.slice(1);
   };
 
-  console.log(pokemons);
+  // console.log(pokemons);
   return (
     <div className="pokemon-container">
       {pokemons &&
@@ -22,8 +22,6 @@ const PokemonList = ({ pokemons }) => {
                   {capitalizeFirstLetterHandler(type.type.name)}
                 </div>
               ))}
-
-              {/* <div className={p.types[1].type.name}>type: {p.types[1].type.name}</div> */}
             </div>
           </Link>
         ))}

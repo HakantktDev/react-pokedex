@@ -65,7 +65,9 @@ const HomePage = () => {
   if (loading) return <Loader />;
   return (
     <>
-      <PokemonList pokemons={pokemons} />
+      <div style={{ height: '800px' }}>
+        <PokemonList pokemons={pokemons} />
+      </div>
       <Pagination gotoNextPage={nextPageUrl ? gotoNextPage : null} gotoPrevPage={prevPageUrl ? gotoPrevPage : null} />
     </>
   );

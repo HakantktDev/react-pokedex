@@ -1,48 +1,30 @@
 import { useSelector } from 'react-redux';
-// import { Link } from 'react-router-dom';
 import PokemonList from '../components/PokemonList';
+import { useEffect, useState } from 'react';
 
 const PokemonCollectionPage = () => {
   const catchedPokemons = useSelector((state) => state.catchedPokemonsList);
+  const [catchedPokemonsIsEmpty, setCatchedPokemonsIsEmpty] = useState(null);
   // console.log(catchedPokemons);
+
+  useEffect(() => {
+    const catchedPokemonHandler = () => {
+      if (catchedPokemons.length === 0) {
+        setCatchedPokemonsIsEmpty(true);
+      } else {
+        setCatchedPokemonsIsEmpty(false);
+      }
+    };
+    catchedPokemonHandler();
+  }, [catchedPokemons]);
+  // console.log(catchedPokemonsIsEmpty);
   return (
-    <PokemonList pokemons={catchedPokemons} />
-    // <div
-    //   style={{
-    //     display: 'flex',
-    //     flexWrap: 'wrap',
-    //     maxWidth: '1375px',
-    //     marginLeft: 'auto',
-    //     marginRight: 'auto',
-    //     height: '800px',
-    //   }}
-    // >
-    //   {catchedPokemons.map((p) => (
-    //     <Link
-    //       to={`/pokemon-collection/pokemon-details/${p.id}`}
-    //       style={{
-    //         textDecoration: 'none',
-    //         flex: '1 0 20%',
-    //         background: 'white',
-    //         margin: '5px',
-    //         height: '150px',
-    //         display: 'flex',
-    //         alignItems: 'center',
-    //         justifyContent: 'center',
-    //       }}
-    //       key={p.id}
-    //       className="my-about-div my-icon-box"
-    //     >
-    //       <div>
-    //         <img src={p.sprites.other.dream_world.front_default} alt={p.name} width={50} height={50} />
-    //         <p style={{ margin: '0', textTransform: 'capitalize' }}>
-    //           <span>{p.id}. </span>
-    //           {p.name}
-    //         </p>
-    //       </div>
-    //     </Link>
-    //   ))}
-    // </div>
+    <>
+      {!catchedPokemonsIsEmpty && <PokemonList pokemons={catchedPokemons} />}
+      {catchedPokemonsIsEmpty && (
+        <h3 style={{ textAlign: 'center', marginTop: '20px' }}>There is no pokemon to list on this page!</h3>
+      )}
+    </>
   );
 };
 
