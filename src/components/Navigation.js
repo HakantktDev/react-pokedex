@@ -13,7 +13,12 @@ const Navigation = () => {
           </li>
           <li>
             <NavLink to="pokemon-collection" className={({ isActive }) => (isActive ? classes.active : undefined)}>
-              PokemonCollection
+              Pokemon Collection
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="favorite-pokemons" className={({ isActive }) => (isActive ? classes.active : undefined)}>
+              Favorite Pokemons
             </NavLink>
           </li>
         </ul>

@@ -11,18 +11,38 @@ const HomePage = () => {
   const [prevPageUrl, setPrevPageUrl] = useState();
   const [loading, setLoading] = useState(true);
 
+  const getPokemonData = async (results) => {
+    results.map(async (item) => {
+      const result = await axios.get(item.url);
+      setPokemons((prevState) => {
+        prevState = [...prevState, result.data];
+        prevState.sort((a, b) => (a.id > b.id ? 1 : -1));
+        return prevState;
+      });
+    });
+  };
+
   useEffect(() => {
     const controller = new AbortController();
     const getPokemonList = async () => {
       try {
         setLoading(true);
+        setPokemons([]);
         const response = await axios.get(currentPageUrl, { signal: AbortController.signal });
-        console.log(response);
+        // console.log(response);
+        // await response.data.results.forEach(async (pokemon) => {
+        //   const response = await axios.get(`https://pokeapi.co/api/v2/pokemon/${pokemon.name}`);
+        //   // const data = await response.json();
+
+        //   setPokemons((prevState) => [...prevState, response]);
+        //   pokemons.sort((a, b) => (a.id > b.id ? 1 : -1));
+        // });
 
         setLoading(false);
+        getPokemonData(response.data.results);
+        // setPokemons(response.data.results);
         setNextPageUrl(response.data.next);
         setPrevPageUrl(response.data.previous);
-        setPokemons(response.data.results);
       } catch (err) {
         setLoading(false);
         console.log(err);
