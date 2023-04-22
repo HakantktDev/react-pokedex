@@ -1,25 +1,33 @@
 import { NavLink } from 'react-router-dom';
-import classes from './Navigation.module.css';
+import { useTranslation } from 'react-i18next';
 
 const Navigation = () => {
+  const { t, i18n } = useTranslation();
+  const handleChangeLanguage = (language) => {
+    i18n.changeLanguage(language);
+  };
   return (
-    <header className={classes.header}>
+    <header className="header">
       <nav>
-        <ul className={classes.list}>
+        <ul className="list">
           <li>
-            <NavLink to="" className={({ isActive }) => (isActive ? classes.active : undefined)} end>
-              Home
+            <NavLink to="" className={({ isActive }) => (isActive ? 'active' : undefined)} end>
+              {t('Pokedex')}
             </NavLink>
           </li>
           <li>
-            <NavLink to="pokemon-collection" className={({ isActive }) => (isActive ? classes.active : undefined)}>
-              Pokemon Collection
+            <NavLink to="pokemon-collection" className={({ isActive }) => (isActive ? 'active' : undefined)}>
+              {t('Pokemon Collection')}
             </NavLink>
           </li>
           <li>
-            <NavLink to="favorite-pokemons" className={({ isActive }) => (isActive ? classes.active : undefined)}>
-              Favorite Pokemons
+            <NavLink to="favorite-pokemons" className={({ isActive }) => (isActive ? 'active' : undefined)}>
+              {t('Favorite Pokemons')}
             </NavLink>
+          </li>
+          <li>
+            <button onClick={() => handleChangeLanguage('tr')}>TR</button>
+            <button onClick={() => handleChangeLanguage('en')}>EN</button>
           </li>
         </ul>
       </nav>

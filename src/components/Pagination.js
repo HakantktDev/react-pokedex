@@ -1,9 +1,11 @@
-import React from 'react';
+import { useTranslation } from 'react-i18next';
+
 const Pagination = ({ gotoNextPage, gotoPrevPage }) => {
+  const { t } = useTranslation();
   return (
     <>
-      {gotoPrevPage && <button onClick={gotoPrevPage}>Previous</button>}
-      {gotoNextPage && <button onClick={gotoNextPage}>Next</button>}
+      {gotoPrevPage && <button onClick={gotoPrevPage}>{t('Previous page')}</button>}
+      {gotoNextPage && <button onClick={gotoNextPage}>{t('Next page')}</button>}
     </>
   );
 };

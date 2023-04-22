@@ -15,41 +15,57 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <HomePage /> },
       {
-        path: '/pokemon-details/:pokemonId',
+        path: 'pokemon-details/:pokemonId',
         element: <PokemonDetailPage />,
         errorElement: <DetailErrorPage />,
         loader: pokemonDetailLoader,
       },
       {
-        path: 'pokemon-collection',
+        path: '/pokemon-collection',
         element: <PokemonCollectionPage />,
-        children: [
-          {
-            path: 'pokemon-details/:pokemonId',
-            element: <PokemonDetailPage />,
-            errorElement: <DetailErrorPage />,
-            loader: pokemonDetailLoader,
-          },
-        ],
+        // children: [
+        //   {
+        //     path: 'pokemon-details/:pokemonId',
+        //     element: <PokemonDetailPage />,
+        //     errorElement: <DetailErrorPage />,
+        //     loader: pokemonDetailLoader,
+        //   },
+        // ],
       },
       {
         path: 'favorite-pokemons',
         element: <FavoritePokemonsPage />,
-        children: [
-          {
-            path: 'pokemon-details/:pokemonId',
-            element: <PokemonDetailPage />,
-            errorElement: <DetailErrorPage />,
-            loader: pokemonDetailLoader,
-          },
-        ],
+        // children: [
+        //   {
+        //     path: '/favorite-pokemons/pokemon-details/:pokemonId',
+        //     element: <PokemonDetailPage />,
+        //     errorElement: <DetailErrorPage />,
+        //     loader: pokemonDetailLoader,
+        //   },
+        // ],
       },
     ],
   },
 ]);
 
 const App = () => {
-  return <RouterProvider router={router} />;
+  return (
+    // <BrowserRouter>
+    //   <Routes>
+    //     <Route path="/" element={<RootLayout />} errorElement={<ErrorPage />}>
+    //       <Route index={true} element={<HomePage />} />
+    //       <Route path="pokemon-details/:pokemonId" element={<PokemonDetailPage />} errorElement={<DetailErrorPage />} />
+    //       <Route path="pokemon-collection" element={<PokemonCollectionPage />}>
+    //         <Route path="pokemon-details/:pokemonId" element={<PokemonDetailPage />} />
+    //       </Route>
+    //       <Route path="favorite-pokemons" element={<FavoritePokemonsPage />}>
+    //         <Route path="pokemon-details/:pokemonId" element={<PokemonDetailPage />} />
+    //       </Route>
+    //     </Route>
+    //   </Routes>
+    // </BrowserRouter>
+    <RouterProvider router={router} />
+  );
 };
 
 export default App;
