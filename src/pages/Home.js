@@ -61,7 +61,7 @@ const HomePage = () => {
   }
   return (
     <>
-      <div className="h-800">
+      <div className="minh-800">
         <PokemonList pokemons={pokemons} data-testid="loader" />
       </div>
       <Pagination gotoNextPage={nextPageUrl ? gotoNextPage : null} gotoPrevPage={prevPageUrl ? gotoPrevPage : null} />
