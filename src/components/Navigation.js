@@ -16,7 +16,7 @@ const Navigation = () => {
       <nav className="poke-nav">
         <ul className="list">
           <li>
-            <NavLink to="" className={({ isActive }) => (isActive ? 'active' : undefined)} end>
+            <NavLink to="/" className={({ isActive }) => (isActive ? 'active' : undefined)} end>
               {t('Pokedex')}
             </NavLink>
           </li>
