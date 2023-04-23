@@ -45,7 +45,7 @@ main {
 }
 
 .pokemon-card {
-  height: 150px;
+  height: 180px;
   cursor: pointer;
   transition: 0.3s all;
   border: 1px solid #e7e7e7;
