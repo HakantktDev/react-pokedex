@@ -33,14 +33,14 @@ const Navigation = () => {
         </ul>
         <div className="nav-lang">
           {activeLanguage !== 'tr' && (
-            <p className="nav-lang-p" onClick={() => handleChangeLanguage('tr')}>
+            <button className="nav-lang-button" onClick={() => handleChangeLanguage('tr')}>
               TR
-            </p>
+            </button>
           )}
           {activeLanguage !== 'en' && (
-            <p className="nav-lang-p" onClick={() => handleChangeLanguage('en')}>
+            <button className="nav-lang-button" onClick={() => handleChangeLanguage('en')}>
               EN
-            </p>
+            </button>
           )}
         </div>
       </nav>

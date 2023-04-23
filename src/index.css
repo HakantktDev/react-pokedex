@@ -148,10 +148,13 @@ main {
   display: flex;
   margin-left: 30%;
 }
-.nav-lang-p {
+.nav-lang-button {
   margin: 0;
   color: #ffffff;
   cursor: pointer;
+  background: unset;
+  border: none;
+  font-size: 16px;
 }
 .mt-20 {
   margin-top: 20px;

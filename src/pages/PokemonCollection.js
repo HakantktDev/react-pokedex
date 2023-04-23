@@ -10,7 +10,7 @@ const PokemonCollectionPage = () => {
 
   useEffect(() => {
     const catchedPokemonHandler = () => {
-      if (catchedPokemons.length === 0) {
+      if (catchedPokemons.length === 0 || !catchedPokemons) {
         setCatchedPokemonsIsEmpty(true);
       } else {
         setCatchedPokemonsIsEmpty(false);
@@ -19,14 +19,11 @@ const PokemonCollectionPage = () => {
     catchedPokemonHandler();
   }, [catchedPokemons]);
 
-  return (
-    <>
-      {!catchedPokemonsIsEmpty && <PokemonList pokemons={catchedPokemons} />}
-      {catchedPokemonsIsEmpty && (
-        <h3 className="text-center mt-20">{t('There is no pokemon to list on this page!')}</h3>
-      )}
-    </>
-  );
+  if (catchedPokemonsIsEmpty) {
+    return <h3 className="text-center mt-20">{t('There is no pokemon to list on this page!')}</h3>;
+  }
+
+  return <>{!catchedPokemonsIsEmpty && <PokemonList pokemons={catchedPokemons} />}</>;
 };
 
 export default PokemonCollectionPage;

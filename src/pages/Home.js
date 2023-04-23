@@ -53,11 +53,16 @@ const HomePage = () => {
     setCurrentPageUrl(prevPageUrl);
   };
 
-  if (loading) return <Loader />;
+  if (loading) {
+    return <Loader />;
+  }
+  if (!pokemons) {
+    return null;
+  }
   return (
     <>
       <div className="h-800">
-        <PokemonList pokemons={pokemons} />
+        <PokemonList pokemons={pokemons} data-testid="loader" />
       </div>
       <Pagination gotoNextPage={nextPageUrl ? gotoNextPage : null} gotoPrevPage={prevPageUrl ? gotoPrevPage : null} />
     </>

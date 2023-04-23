@@ -10,7 +10,7 @@ const FavoritePokemonsPage = () => {
 
   useEffect(() => {
     const catchedPokemonHandler = () => {
-      if (favoritePokemons.length === 0) {
+      if (!favoritePokemons || favoritePokemons.length === 0) {
         setFavoritePokemonsIsEmpty(true);
       } else {
         setFavoritePokemonsIsEmpty(false);
@@ -19,14 +19,11 @@ const FavoritePokemonsPage = () => {
     catchedPokemonHandler();
   }, [favoritePokemons]);
 
-  return (
-    <>
-      {!favoritePokemonsIsEmpty && <PokemonList pokemons={favoritePokemons} />}
-      {favoritePokemonsIsEmpty && (
-        <h3 className="text-center mt-20">{t('There is no pokemon to list on this page!')}</h3>
-      )}
-    </>
-  );
+  if (favoritePokemonsIsEmpty) {
+    return <h3 className="text-center mt-20">{t('There is no pokemon to list on this page!')}</h3>;
+  }
+
+  return <>{!favoritePokemonsIsEmpty && <PokemonList pokemons={favoritePokemons} />}</>;
 };
 
 export default FavoritePokemonsPage;
