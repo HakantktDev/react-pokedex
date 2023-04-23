@@ -24,23 +24,14 @@ const HomePage = () => {
 
   useEffect(() => {
     const controller = new AbortController();
+
     const getPokemonList = async () => {
       try {
         setLoading(true);
         setPokemons([]);
         const response = await axios.get(currentPageUrl, { signal: AbortController.signal });
-        // console.log(response);
-        // await response.data.results.forEach(async (pokemon) => {
-        //   const response = await axios.get(`https://pokeapi.co/api/v2/pokemon/${pokemon.name}`);
-        //   // const data = await response.json();
-
-        //   setPokemons((prevState) => [...prevState, response]);
-        //   pokemons.sort((a, b) => (a.id > b.id ? 1 : -1));
-        // });
-
         setLoading(false);
         getPokemonData(response.data.results);
-        // setPokemons(response.data.results);
         setNextPageUrl(response.data.next);
         setPrevPageUrl(response.data.previous);
       } catch (err) {
@@ -65,7 +56,7 @@ const HomePage = () => {
   if (loading) return <Loader />;
   return (
     <>
-      <div style={{ height: '800px' }}>
+      <div className="h-800">
         <PokemonList pokemons={pokemons} />
       </div>
       <Pagination gotoNextPage={nextPageUrl ? gotoNextPage : null} gotoPrevPage={prevPageUrl ? gotoPrevPage : null} />

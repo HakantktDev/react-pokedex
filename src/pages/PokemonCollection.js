@@ -1,11 +1,12 @@
 import { useSelector } from 'react-redux';
 import PokemonList from '../components/PokemonList';
 import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 const PokemonCollectionPage = () => {
+  const { t } = useTranslation();
   const catchedPokemons = useSelector((state) => state.catchedPokemonsList);
   const [catchedPokemonsIsEmpty, setCatchedPokemonsIsEmpty] = useState(null);
-  // console.log(catchedPokemons);
 
   useEffect(() => {
     const catchedPokemonHandler = () => {
@@ -17,12 +18,12 @@ const PokemonCollectionPage = () => {
     };
     catchedPokemonHandler();
   }, [catchedPokemons]);
-  // console.log(catchedPokemonsIsEmpty);
+
   return (
     <>
       {!catchedPokemonsIsEmpty && <PokemonList pokemons={catchedPokemons} />}
       {catchedPokemonsIsEmpty && (
-        <h3 style={{ textAlign: 'center', marginTop: '20px' }}>There is no pokemon to list on this page!</h3>
+        <h3 className="text-center mt-20">{t('There is no pokemon to list on this page!')}</h3>
       )}
     </>
   );

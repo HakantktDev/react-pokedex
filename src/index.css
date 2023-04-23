@@ -83,6 +83,9 @@ main {
   margin-left: 20px;
   background: #0a77bd;
   border-radius: 5px;
+  width: 55%;
+  padding: 0px 30px;
+  margin-top: 20px;
 }
 
 .pokemon-card:hover {
@@ -130,6 +133,70 @@ main {
   transition: all 0.3s ease-in-out;
   backface-visibility: hidden;
   -webkit-font-smoothing: antialiased;
+}
+.text-center {
+  text-align: center;
+}
+.mt-200 {
+  margin-top: 200px;
+}
+.poke-nav {
+  display: contents;
+  max-width: 1375px;
+}
+.nav-lang {
+  display: flex;
+  margin-left: 30%;
+}
+.nav-lang-p {
+  margin: 0;
+  color: #ffffff;
+  cursor: pointer;
+}
+.mt-20 {
+  margin-top: 20px;
+}
+.poke-name {
+  margin: 0;
+  text-transform: capitalize;
+}
+.h-800 {
+  height: 800px;
+}
+.w-100 {
+  width: 100%;
+}
+.w-15 {
+  width: 15%;
+}
+.w-70 {
+  width: 70%;
+}
+.icon-container {
+  display: flex;
+  align-items: center;
+}
+.pokemon-left-container {
+  width: 40%;
+  background: #e5e5e5;
+  border-radius: 3px;
+}
+.pokemon-detail-img {
+  max-width: 200px;
+  width: 100%;
+  height: auto;
+}
+.stat-p {
+  text-transform: uppercase;
+  font-weight: bold;
+  display: grid;
+}
+.stat-span {
+  font-weight: normal;
+  margin-top: 5px;
+}
+.mt-30 {
+  margin-top: 30px;
 }
 .grass {
   background-color: rgb(38, 235, 90);

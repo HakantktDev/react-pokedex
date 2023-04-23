@@ -5,11 +5,12 @@ import App from './App';
 import { Provider } from 'react-redux';
 import store from './store/index';
 import './i18n';
+import Loader from './components/Loader';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   // <React.StrictMode>
-  <Suspense fallback={<div>Loading...</div>}>
+  <Suspense fallback={<Loader />}>
     <Provider store={store}>
       <App />
     </Provider>

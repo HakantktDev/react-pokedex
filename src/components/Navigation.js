@@ -13,7 +13,7 @@ const Navigation = () => {
   }, [i18n.language]);
   return (
     <header className="header">
-      <nav style={{ maxWidth: '1375px', display: 'contents' }}>
+      <nav className="poke-nav">
         <ul className="list">
           <li>
             <NavLink to="" className={({ isActive }) => (isActive ? 'active' : undefined)} end>
@@ -31,14 +31,14 @@ const Navigation = () => {
             </NavLink>
           </li>
         </ul>
-        <div style={{ display: 'flex', marginLeft: '30%', gap: '5px' }}>
+        <div className="nav-lang">
           {activeLanguage !== 'tr' && (
-            <p style={{ margin: '0', color: '#ffffff', cursor: 'pointer' }} onClick={() => handleChangeLanguage('tr')}>
+            <p className="nav-lang-p" onClick={() => handleChangeLanguage('tr')}>
               TR
             </p>
           )}
           {activeLanguage !== 'en' && (
-            <p style={{ margin: '0', color: '#ffffff', cursor: 'pointer' }} onClick={() => handleChangeLanguage('en')}>
+            <p className="nav-lang-p" onClick={() => handleChangeLanguage('en')}>
               EN
             </p>
           )}

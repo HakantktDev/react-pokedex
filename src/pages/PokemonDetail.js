@@ -15,7 +15,7 @@ const PokemonDetailPage = () => {
   const data = useLoaderData();
   const catchedPokemons = useSelector((state) => state.catchedPokemonsList);
   const favoritePokemons = useSelector((state) => state.favoritePokemonsList);
-  console.log(data);
+
   useEffect(() => {
     const isPokemonCatchedHandler = () => {
       if (catchedPokemons) {
@@ -28,7 +28,6 @@ const PokemonDetailPage = () => {
     };
     isPokemonCatchedHandler();
   }, [catchedPokemons, data.id]);
-  // console.log(data.id);
 
   useEffect(() => {
     const isPokemonFavoriteHandler = () => {
@@ -66,20 +65,14 @@ const PokemonDetailPage = () => {
   return (
     <>
       <div className="pokemon-container">
-        <div style={{ width: '100%' }}>
+        <div className="w-100">
           <Link to=".." className="pokemon-button">
             {t('Back to Pokedex')}
           </Link>
         </div>
-        {/* <h2 style={{ width: '100%', textAlign: 'center', marginTop: '20px' }}>{t('Pokemon Details')}</h2> */}
-        {/* <img src={pokeball} alt="pokeball" width={50} />
-        <img src={starOutlined} alt="star" width={50} />
-        <img src={starFilled} alt="star" width={50} /> */}
-        <div
-          style={{ width: '40%', textAlign: 'center', background: '#e5e5e5', borderRadius: '3px', marginTop: '20px' }}
-        >
-          <div style={{ display: 'flex', alignItems: 'center' }}>
-            <div style={{ width: '15%' }}>
+        <div className="pokemon-left-container mt-20 text-center">
+          <div className="icon-container">
+            <div className="w-15">
               {!isFavorite && (
                 <img
                   src={starOutlined}
@@ -99,29 +92,23 @@ const PokemonDetailPage = () => {
                 />
               )}
             </div>
-            <div style={{ width: '70%' }}>
+            <div className="w-70">
               <h3 className="capital-letters">{data.name}</h3>
             </div>
-            <div style={{ width: '15%' }}>
-              {isCatched && <img src={pokeball} alt="pokeball" width={30} height={30} />}
-            </div>
+            <div className="w-15">{isCatched && <img src={pokeball} alt="pokeball" width={30} height={30} />}</div>
           </div>
-          <img
-            src={data.sprites.other.dream_world.front_default}
-            alt={data.name}
-            style={{ width: '100%', height: 'auto', maxWidth: '200px' }}
-          />
+          <img src={data.sprites.other.dream_world.front_default} alt={data.name} className="pokemon-detail-img" />
         </div>
-        <div style={{ width: '55%', padding: '0 30px', marginTop: '20px' }} className="pokemon-stats-container">
+        <div className="pokemon-stats-container">
           {data.stats.map((stats) => (
             <div className="pokemon-stats" key={stats.stat.name}>
-              <p style={{ textTransform: 'uppercase', fontWeight: 'bold', display: 'grid' }}>
-                {stats.stat.name} <span style={{ fontWeight: 'normal', marginTop: '5px' }}>{stats.base_stat}</span>
+              <p className="stat-p">
+                {stats.stat.name} <span className="stat-span">{stats.base_stat}</span>
               </p>
             </div>
           ))}
         </div>
-        <div style={{ width: '100%', textAlign: 'center', marginTop: '30px' }}>
+        <div className="w-100 text-center mt-30">
           {!isCatched && (
             <button className="pokemon-button" onClick={catchedPokemonHandler}>
               {t('Catch')}
@@ -154,16 +141,8 @@ export const loader = async ({ params }) => {
   const pokemonId = params.pokemonId;
   try {
     const response = await axios.get('https://pokeapi.co/api/v2/pokemon/' + pokemonId);
-    // console.log(response);
     return response.data;
   } catch (err) {
     console.log(err);
   }
-
-  // console.log(response);
-  // if (response.status !== 200) {
-  //   throw json({ message: 'Could not fetch details of selected Pokemon!' }, { status: 500 });
-  // } else {
-  //   return response;
-  // }
 };
