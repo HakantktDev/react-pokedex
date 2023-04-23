@@ -29,5 +29,11 @@
   "Can not find this pokemon detail!": "Can not find this pokemon detail!",
   "An error occurred!": "An error occurred!",
   "Could not find this page!": "Could not find this page!",
-  "There is no pokemon to list on this page!": "There is no pokemon to list on this page!"
+  "There is no pokemon to list on this page!": "There is no pokemon to list on this page!",
+  "hp": "hp",
+  "attack": "attack",
+  "defense": "defense",
+  "special-attack": "special attack",
+  "special-defense": "special defense",
+  "speed": "hız"
 }
