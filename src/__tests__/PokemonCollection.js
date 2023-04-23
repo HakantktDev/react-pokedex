@@ -22,9 +22,5 @@ describe('FavoritePokemonsPage', () => {
         <PokemonCollectionPage />
       </Provider>
     );
-
-    // // replace the following line with a suitable query
-    // const pokemonList = screen.getByRole('pokemon-list');
-    // expect(pokemonList).toBeInTheDocument();
   });
 });

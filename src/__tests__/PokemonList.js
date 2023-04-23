@@ -36,14 +36,6 @@ describe('PokemonList', () => {
         <PokemonList pokemons={mockPokemons} />
       </MemoryRouter>
     );
-
-    // expect(screen.getByText('1. Bulbasaur')).toBeInTheDocument();
-    // expect(screen.getByText('2. Charmander')).toBeInTheDocument();
-    // expect(screen.getByAltText('Bulbasaur')).toBeInTheDocument();
-    // expect(screen.getByAltText('Charmander')).toBeInTheDocument();
-    // expect(screen.getByText('Grass')).toBeInTheDocument();
-    // expect(screen.getByText('Poison')).toBeInTheDocument();
-    // expect(screen.getByText('Fire')).toBeInTheDocument();
   });
 
   test('renders a message when there are no pokemons to list', () => {
