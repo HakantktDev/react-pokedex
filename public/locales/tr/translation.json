@@ -29,5 +29,11 @@
   "Can not find this pokemon detail!": "Bu pokemonun detayları bulunamadı!",
   "An error occurred!": "Bir hata oluştu!",
   "Could not find this page!": "Bu sayfa bulunamadı!",
-  "There is no pokemon to list on this page!": "Bu sayfada listelenecek pokemon bulunamadı!"
+  "There is no pokemon to list on this page!": "Bu sayfada listelenecek pokemon bulunamadı!",
+  "hp": "can",
+  "attack": "saldırı",
+  "defense": "savunma",
+  "special-attack": "spesyal saldırı",
+  "special-defense": "spesyal savunma",
+  "speed": "hız"
 }
