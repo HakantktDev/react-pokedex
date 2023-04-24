@@ -10,17 +10,9 @@ const PokemonList = ({ pokemons }) => {
     }
   };
 
-  if (!pokemons || pokemons.length === 0) {
-    return (
-      <div className="pokemon-container">
-        <h3 className="text-center mt-20">{t('There is no pokemon to list on this page!')}</h3>
-      </div>
-    );
-  }
-
   return (
     <div className="pokemon-container">
-      {pokemons.map((p) => (
+      {pokemons && pokemons.map((p) => (
         <Link to={`/pokemon-details/${p.id}`} key={p.id} className="pokemon-card">
           <div>
             <img src={p.sprites?.other.dream_world.front_default} alt={p.name} width={50} height={50} />
