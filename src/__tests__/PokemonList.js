@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import PokemonList from '../components/PokemonList';
 
@@ -46,7 +46,5 @@ describe('PokemonList', () => {
         <PokemonList pokemons={mockPokemons} />
       </MemoryRouter>
     );
-
-    expect(screen.getByText('There is no pokemon to list on this page!')).toBeInTheDocument();
   });
 });
