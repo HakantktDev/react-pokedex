@@ -10,9 +10,13 @@ const PokemonList = ({ pokemons }) => {
     }
   };
 
+  if (!pokemons || pokemons.length === 0) {
+    return;
+  }
+
   return (
     <div className="pokemon-container">
-      {pokemons && pokemons.map((p) => (
+      {pokemons.map((p) => (
         <Link to={`/pokemon-details/${p.id}`} key={p.id} className="pokemon-card">
           <div>
             <img src={p.sprites?.other.dream_world.front_default} alt={p.name} width={50} height={50} />
